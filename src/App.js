@@ -1,17 +1,21 @@
 import './App.css';
 import { useSelector, useDispatch } from "react-redux";
 import { addPost } from './features/Posts';
+import { useState } from 'react';
 
 function App() {
   // access to slice
   const postList = useSelector((state) => state.posts.value);
 
+  const [name, setName] = useState("");
+  const [content, setContent] = useState("");
+
   const dispatch = useDispatch();
-  const handleClick = (e) => {
+  const handleClick = () => {
     dispatch(addPost({
       id: 0,
-      name: "test",
-      content: "teststs",
+      name: name,
+      content: content,
     }))
   }
 
@@ -19,10 +23,10 @@ function App() {
     <div className="App">
       <h1>掲示板</h1>
       <div className="addPost">
-        <input type="text" placeholder='your name'/>
-        <input type="text" placeholder='your post'/>
+        <input type="text" placeholder='your name' onChange={(e) => setName(e.target.value)}/>
+        <input type="text" placeholder='your post' onChange={(e) => setContent(e.target.value)}/>
         <button
-          onClick={(e) => handleClick()}>投稿</button>
+          onClick={() => handleClick()}>投稿</button>
       </div>
       <div className='displayPosts'>
         {postList.map((post) => (
