@@ -1,6 +1,6 @@
 import './App.css';
 import { useSelector, useDispatch } from "react-redux";
-import { addPost } from './features/Posts';
+import { addPost, deletePost } from './features/Posts';
 import { useState } from 'react';
 
 function App() {
@@ -13,10 +13,13 @@ function App() {
   const dispatch = useDispatch();
   const handleClick = () => {
     dispatch(addPost({
-      id: 0,
+      id: postList.length, // hack
       name: name,
       content: content,
     }))
+  }
+  const handleDeleteClick = (id) => {
+    dispatch(deletePost({id: id}))
   }
 
   return (
@@ -34,6 +37,8 @@ function App() {
             <div key={post.id} className='post'>
               <h1>{post.name}</h1>
               <p className='postContent'>{post.content}</p>
+              <button
+                onClick={() => handleDeleteClick(post.id)}>削除</button>
             </div>
             <hr />
           </>
