@@ -19,7 +19,7 @@ function App() {
     }))
   }
   const handleDeleteClick = (id) => {
-    dispatch(deletePost({id: id}))
+    dispatch(deletePost({ id: id }))
   }
 
   return (
