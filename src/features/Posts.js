@@ -1,4 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit"
+import { PostsData } from '../DummyData';
 
 export const postSlice = createSlice({
   name: "posts",
@@ -9,3 +10,5 @@ export const postSlice = createSlice({
     }
   }
 })
+
+export default postSlice.reducer;
